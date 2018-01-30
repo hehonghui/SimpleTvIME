@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <EditText android:id="@+id/input_edittext" android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_centerInParent="true"
               android:gravity="center"
-              android:hint="Input Text" android:textColor="@android:color/holo_red_light"
+              android:hint="Input Text"
+              android:layout_marginTop="80dp"
+              android:textColor="@android:color/holo_red_light"
               android:textSize="20dp"/>
 
 
     <Button android:id="@+id/enable_input_method"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
             android:gravity="center"
-            android:layout_below="@id/input_edittext"
             android:text="选中输入法"
             android:textColor="@android:color/white"
     />
@@ -26,17 +27,37 @@
     <Button android:id="@+id/set_default_btn"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/enable_input_method"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="设置默认输入法"
             android:textColor="@android:color/white"
     />
 
-    <TextView android:id="@+id/im_status_tv" android:layout_width="match_parent"
-              android:layout_height="wrap_content" android:layout_alignParentBottom="true"
-              android:layout_marginBottom="5dp"
-              android:gravity="center"
-              android:textColor="@android:color/holo_red_light" android:textSize="14sp"/>
 
-</RelativeLayout>
+    <!--ip address-->
+    <TextView android:id="@+id/addr_tv" android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:layout_marginBottom="8dp"
+              android:gravity="center"
+              android:textColor="@android:color/holo_red_light"
+              android:textSize="14sp"/>
+
+
+    <!--qr code-->
+    <ImageView android:id="@+id/qrcode_imageview" android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:minWidth="100dp"
+               android:minHeight="100dp"
+               android:layout_gravity="center_horizontal"/>
+
+
+    <!--status -->
+    <TextView android:id="@+id/im_status_tv" android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="bottom"
+              android:layout_marginTop="48dp"
+              android:gravity="center"
+              android:textColor="@android:color/holo_red_light" android:textSize="12sp"/>
+
+</LinearLayout>

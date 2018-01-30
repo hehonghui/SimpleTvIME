@@ -53,6 +53,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/qrcode/QRCodeGenerator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/services/ServerInputMethodService.java">
           <value>
             <set />

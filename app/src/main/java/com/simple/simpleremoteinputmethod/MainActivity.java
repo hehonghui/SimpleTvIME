@@ -22,12 +22,17 @@ import android.provider.Settings;
 import android.view.View;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.simple.simpleremoteinputmethod.qrcode.QRCodeGenerator;
 
 /*
  * MainActivity class that loads {@link MainFragment}.
  */
 public class MainActivity extends Activity {
+
+    String mServerAddr ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,23 @@ public class MainActivity extends Activity {
 
         TextView textView = findViewById(R.id.im_status_tv) ;
         textView.append("是否激活: " + myInputMethodIsActive() + ";  默认输入法: " + myInputMethodIsDefault());
+
+
+        mServerAddr = "http://www.newsdog.today";
+        TextView addrTv = findViewById(R.id.addr_tv) ;
+        addrTv.append("连接的地址为: " + mServerAddr);
+
+        ImageView imageView = findViewById(R.id.qrcode_imageview) ;
+        imageView.setImageBitmap(QRCodeGenerator.generate(mServerAddr, dip2px(this, 150), dip2px(this, 150)));
+    }
+
+
+    /**
+     * dip转为 px
+     */
+    public static int dip2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 
 
