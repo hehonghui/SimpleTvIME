@@ -48,6 +48,26 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/httpd/LocalServer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/httpd/MyServer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/httpd/NanoHTTPD.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/httpd/NetUtls.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/net/SimpleWebServer.java">
           <value>
             <set />
@@ -59,6 +79,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/services/ServerInputMethodService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/simple/simpleremoteinputmethod/utils/Utils.java">
           <value>
             <set />
           </value>
@@ -94,6 +119,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/xml/method.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/a.dummy">
           <value>
             <set />
           </value>

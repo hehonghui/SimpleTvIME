@@ -18,20 +18,23 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
-import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.simple.simpleremoteinputmethod.httpd.LocalServer;
 import com.simple.simpleremoteinputmethod.qrcode.QRCodeGenerator;
+import com.simple.simpleremoteinputmethod.utils.Utils;
+
+import java.io.IOException;
 
 /*
  * MainActivity class that loads {@link MainFragment}.
  */
 public class MainActivity extends Activity {
 
+    LocalServer mLocalServer ;
     String mServerAddr ;
 
     @Override
@@ -54,42 +57,34 @@ public class MainActivity extends Activity {
         });
 
         TextView textView = findViewById(R.id.im_status_tv) ;
-        textView.append("是否激活: " + myInputMethodIsActive() + ";  默认输入法: " + myInputMethodIsDefault());
+        textView.append("是否激活: " + Utils.myInputMethodIsActive(this) + ";  默认输入法: " + Utils.myInputMethodIsDefault(this));
 
+        initHttpServer();
+    }
 
-        mServerAddr = "http://www.newsdog.today";
+    private void initHttpServer() {
+        mLocalServer = new LocalServer() ;
+        try {
+            mLocalServer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //        mServerAddr = "http://www.newsdog.today";
+        mServerAddr = "http://" + Utils.getIpAddress(getApplicationContext()) + ":" + mLocalServer.getPort() ;
         TextView addrTv = findViewById(R.id.addr_tv) ;
         addrTv.append("连接的地址为: " + mServerAddr);
 
         ImageView imageView = findViewById(R.id.qrcode_imageview) ;
-        imageView.setImageBitmap(QRCodeGenerator.generate(mServerAddr, dip2px(this, 150), dip2px(this, 150)));
+        imageView.setImageBitmap(QRCodeGenerator.generate(mServerAddr, Utils.dip2px(this, 150), Utils.dip2px(this, 150)));
     }
 
 
-    /**
-     * dip转为 px
-     */
-    public static int dip2px(Context context, float dipValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
-    }
-
-
-    private boolean myInputMethodIsActive() {
-        for (InputMethodInfo packageName : ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).getEnabledInputMethodList()) {
-            if (packageName.getPackageName().equals(getPackageName())) {
-                return true;
-            }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if ( mLocalServer != null ) {
+            mLocalServer.stop();
         }
-        return false;
-    }
-
-
-    private boolean myInputMethodIsDefault() {
-        String string = Settings.Secure.getString(getContentResolver(), "default_input_method");
-        if (string == null || !string.startsWith(getPackageName())) {
-            return false;
-        }
-        return true;
     }
 }
