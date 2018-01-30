@@ -138,7 +138,7 @@ body {
 	-o-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
-	background: url(http://img.blog.csdn.net/20180130190801500) no-repeat;
+	background: url(keys.png) no-repeat;
 	background-size: 1000px;
 	background-position: -1px -1px
 }

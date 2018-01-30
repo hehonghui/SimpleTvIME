@@ -3,18 +3,24 @@ package com.simple.simpleremoteinputmethod.httpd;
 import android.content.Context;
 import android.util.Log;
 
+import com.simple.simpleremoteinputmethod.services.RemoteInputEvent;
+import com.simple.simpleremoteinputmethod.services.RemoteKeyEvent;
+import com.simple.simpleremoteinputmethod.utils.Utils;
+
 import java.io.IOException;
 import java.io.InputStream;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by andrei on 7/30/15.
  */
-public class LocalServer extends NanoHTTPD {
+public class RouterServer extends NanoHTTPD {
     private final static int PORT = 10086;
 
-    private Context mAppContext;
+    protected Context mAppContext;
 
-    public LocalServer(Context context) {
+    public RouterServer(Context context) {
         super(PORT);
         mAppContext = context ;
     }
@@ -24,6 +30,10 @@ public class LocalServer extends NanoHTTPD {
         Log.e("", "@@@ local server : " + session.getUri() + ", params : " + session.getParms().toString());
 
         String path = session.getUri() ;
+
+        if ( path.equalsIgnoreCase("/") ) {
+            path = "/index.html" ;
+        }
 
         if ( path.endsWith("html")
                 || path.endsWith("js")
@@ -38,10 +48,21 @@ public class LocalServer extends NanoHTTPD {
                 e.printStackTrace();
             }
         }
-        String msg = "<html><body><h1>Hello server</h1>\n";
-        msg += "<p>We serve " + session.getUri() + " !</p>";
-        return newFixedLengthResponse( msg + "</body></html>\n" );
+
+        if ( path.endsWith("key") ) {
+            final String keyCode = session.getParms().get("keycode") ;
+            EventBus.getDefault().post(RemoteKeyEvent.create(Integer.parseInt(keyCode)));
+            return newFixedLengthJsonResponse( "{}" );
+        }
+
+        if ( path.endsWith("text") ) {
+            final String text = session.getParms().get("text");
+            EventBus.getDefault().post(RemoteInputEvent.create(text));
+            return newFixedLengthJsonResponse( "{}" );
+        }
+        return newFixedLengthJsonResponse( "{\"err_msg\":\"Unknown event for : " + session.getUri() + "!!!\"}" );
     }
+
 
     private static String getMimeType(String path) {
         if ( path.contains(".") ) {
@@ -62,7 +83,8 @@ public class LocalServer extends NanoHTTPD {
         return NanoHTTPD.MIME_PLAINTEXT ;
     }
 
-    public int getPort() {
-        return PORT;
+
+    public String getLocalAddress() {
+        return "http://" + Utils.getIpAddress(mAppContext) + ":" + PORT ;
     }
 }

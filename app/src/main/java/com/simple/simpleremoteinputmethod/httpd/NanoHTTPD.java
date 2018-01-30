@@ -1531,7 +1531,7 @@ public abstract class NanoHTTPD {
      * This is required as the Keep-Alive HTTP connections would otherwise block
      * the socket reading thread forever (or as long the browser is open).
      */
-    public static final int SOCKET_READ_TIMEOUT = 5000;
+    public static final int SOCKET_READ_TIMEOUT = 5 * 1000;
 
     /**
      * Common MIME type for dynamic content: plain text
@@ -1847,6 +1847,13 @@ public abstract class NanoHTTPD {
      */
     public Response newFixedLengthResponse(String msg) {
         return newFixedLengthResponse(Response.Status.OK, NanoHTTPD.MIME_HTML, msg);
+    }
+
+    /**
+     * Create a text response with known length.
+     */
+    public Response newFixedLengthJsonResponse(String msg) {
+        return newFixedLengthResponse(Response.Status.OK, NanoHTTPD.MIME_JSON, msg);
     }
 
     /**
