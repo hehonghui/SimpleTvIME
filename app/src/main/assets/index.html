@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+	<meta charset="utf-8">
+	<title>Tv Remote Controls</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="layoutmode" content="standard">
+	<link rel="stylesheet" type="text/css" href="/style.css">
+
+</head>
+<body>
+	<div class="container">
+		<div class="keys">
+			<div id="direction-btns" class="direction-btns">
+				<div class="otherbtn home-btn" id="home-btn" data-key='3' data-bp='-586px -315px'></div>
+				<div class="otherbtn vol-btn" id="vol-btn" data-key='164' data-bp='-711px -315px'></div>
+				<div class="direction left-btn" id="left-btn" data-key='21' data-bp='-1px -247px'></div>
+				<div class="direction top-btn" id="top-btn" data-key='19' data-bp='-247px -1px'></div>
+				<div class="direction right-btn" id="right-btn" data-key='22' data-bp='-493px -1px'></div>
+				<div class="direction bottom-btn" id="bottom-btn" data-key='20' data-bp='-247px -247px'></div>
+				<div class="direction center-btn" id="center-btn" data-key='23' data-bp='-740px -1px'></div>
+				<div class="otherbtn back-btn" id="back-btn" data-key='4' data-bp='-586px -251px'></div>
+				<div class="otherbtn menu-btn" id="menu-btn" data-key='82' data-bp='-711px -251px'></div>
+				<div class="otherbtn vol1-btn" id="vol1-btn" data-key='24' data-bp='-711px -379px'></div>
+				<div class="otherbtn vol2-btn" id="vol2-btn" data-key='25' data-bp='-711px -379px'></div>
+			</div>
+		</div>
+		<div class="main-wrapper">
+			<div class="inputarea-wrapper">
+				<textarea id="inputarea" rows="2" placeholder="What you want ?"></textarea>
+			</div>
+			<div id="confirm" class="btn-nowd btn-wd">Submit</div>
+		</div>
+		<div class="btn-line">
+		    <input type="button" value="Delete" class="btn" id="btnDel" data-key='67' />
+		    <input type="button" value="Clear" class="btn" id="btnCls" data-key='cls' />
+		</div>
+	</div>
+
+    <script src="/jquery_min.js"></script>
+    <script src="/controls.js"></script>
+</body>
+</html>

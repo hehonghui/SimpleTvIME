@@ -785,6 +785,8 @@ public abstract class NanoHTTPD {
                 Response resp = newFixedLengthResponse(re.getStatus(), NanoHTTPD.MIME_PLAINTEXT, re.getMessage());
                 resp.send(this.outputStream);
                 safeClose(this.outputStream);
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
             } finally {
                 safeClose(r);
                 this.tempFileManager.clear();
@@ -1540,6 +1542,15 @@ public abstract class NanoHTTPD {
      * Common MIME type for dynamic content: html
      */
     public static final String MIME_HTML = "text/html";
+
+
+    public static final String MIME_JSON = "application/json";
+    public static final String MIME_JS = "application/x-javascript";
+    public static final String MIME_CSS = "text/css";
+    public static final String MIME_PNG = "image/png";
+    public static final String MIME_ICO = "image/x-icon";
+
+
 
     /**
      * Pseudo-Parameter to use to store the actual query string in the

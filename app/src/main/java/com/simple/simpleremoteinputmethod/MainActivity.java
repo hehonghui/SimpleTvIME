@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
     }
 
     private void initHttpServer() {
-        mLocalServer = new LocalServer() ;
+        mLocalServer = new LocalServer(getApplicationContext()) ;
         try {
             mLocalServer.start();
         } catch (IOException e) {
