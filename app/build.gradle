@@ -9,6 +9,15 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        release {
+            keyAlias "${KEYALIAS}"
+            keyPassword "${KEYPWD}"
+            storeFile file("${KEYSTORE}")
+            storePassword "${KEYPWD}"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false

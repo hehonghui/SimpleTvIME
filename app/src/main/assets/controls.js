@@ -19,10 +19,29 @@ function sendKeyCode(keyCode) {
 }
 
 
-$("#btnCls, #btnDel").on("click",
+function deleteOneChar() {
+    var text = $("#inputarea").val().toString()
+    if ( text.length > 0 ) {
+        var newText = text.substring(0, text.length - 1)
+        $("#inputarea").val(newText)
+    }
+}
+
+function clearAll() {
+    $("#inputarea").val('')
+}
+
+// delete one char
+$("#btnDel").on("click",
 function() {
-//    postKeyCode($(this).attr("data-key"))
     sendKeyCode($(this).attr("data-key"))
+    deleteOneChar()
+}),
+// clear all
+$("#btnCls").on("click",
+function() {
+    sendKeyCode($(this).attr("data-key"))
+    clearAll()
 }),
 $(".direction").on(isSupportTouch ? "touchstart": "mousedown",
 function() {
@@ -55,10 +74,10 @@ function() {
 //    "" != text && ($input.val(""), $.post("/text", {
 //        text: text
 //    },
-    "" != text && ($input.val(""), $.get("/text?text=" + text, {
+    "" != text, $.get("/text?text=" + text, {
         text: text
     },
     function(data) {
         console.log(data)
-    }))
+    })
 })
