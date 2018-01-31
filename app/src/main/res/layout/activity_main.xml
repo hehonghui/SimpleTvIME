@@ -12,6 +12,7 @@
               android:layout_marginLeft="30dp"
               android:layout_marginRight="30dp"
               android:layout_marginTop="80dp"
+              android:nextFocusDown="@id/enable_input_method"
               android:textColor="@android:color/holo_red_light"
               android:textSize="20dp"/>
 
@@ -21,6 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
+            android:nextFocusDown="@id/set_default_btn"
+            android:nextFocusUp="@id/input_edittext"
             android:gravity="center"
             android:text="@string/select"
             android:textColor="@android:color/white"
@@ -31,6 +34,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:nextFocusUp="@id/enable_input_method"
             android:gravity="center"
             android:text="@string/default_ime"
             android:textColor="@android:color/white"
