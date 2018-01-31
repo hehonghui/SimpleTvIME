@@ -20,21 +20,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.simple.simpleremoteinputmethod.httpd.QRCodeServer;
+import com.simple.simpleremoteinputmethod.services.ServerInputMethodService;
 import com.simple.simpleremoteinputmethod.utils.Utils;
 
-/*
- * MainActivity class that loads {@link MainFragment}.
+/**
+ *
  */
 public class MainActivity extends Activity {
 
-    String mServerAddr ;
+    public static final int REQ_CODE = 123456 ;
+
+    Handler mUiHandler = new Handler(Looper.getMainLooper()) ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,48 +46,53 @@ public class MainActivity extends Activity {
         findViewById(R.id.enable_input_method).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent("android.settings.INPUT_METHOD_SETTINGS"), 0);
+                startActivityForResult(new Intent("android.settings.INPUT_METHOD_SETTINGS"), REQ_CODE);
             }
         });
 
         findViewById(R.id.set_default_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE)).showInputMethodPicker();
+                showInputMethodPicker();
             }
         });
 
         TextView textView = findViewById(R.id.im_status_tv) ;
-        textView.append("是否激活: " + Utils.myInputMethodIsActive(this) + ";  默认输入法: " + Utils.myInputMethodIsDefault(this));
+        textView.setText( getText(R.string.is_active).toString() + Utils.myInputMethodIsActive(this)
+                            + getText(R.string.is_default).toString() + Utils.myInputMethodIsDefault(this));
+
+        mUiHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if ( Utils.myInputMethodIsDefault(getApplicationContext())
+                        && !QRCodeServer.getInstance(getApplicationContext()).isStarted() ) {
+                    Intent intent = new Intent(getApplicationContext(), ServerInputMethodService.class) ;
+                    startService(intent) ;
+                }
+            }
+        }, 1000) ;
+
+        showTips();
     }
 
-    private void initHttpServer() {
-        if (!TextUtils.isEmpty(mServerAddr) ) {
-            return;
-        }
-        TextView addrTv = findViewById(R.id.addr_tv) ;
-        final QRCodeServer localServer = QRCodeServer.getInstance(getApplicationContext()) ;
-        if ( localServer.getQrCodeBitmap() != null ) {
-            mServerAddr = localServer.getLocalAddress();
-            addrTv.setText(getText(R.string.connect_addr) + mServerAddr);
 
-            ImageView imageView = findViewById(R.id.qrcode_imageview) ;
-            imageView.setImageBitmap(localServer.getQrCodeBitmap());
-        } else {
-            addrTv.setText(getText(R.string.inputmethod_not_start));
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    initHttpServer();
-                }
-            }, 200);
+    private void showTips() {
+        if ( !Utils.myInputMethodIsActive(getApplicationContext()) ) {
+            Toast.makeText(this, R.string.enable_input , Toast.LENGTH_LONG).show();
+        } else if ( !Utils.myInputMethodIsDefault(getApplicationContext()) ) {
+            Toast.makeText(this, R.string.setup_default , Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        findViewById(R.id.input_edittext).performClick() ;
-        initHttpServer();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ( requestCode == REQ_CODE ) {
+            showTips();
+        }
+    }
+
+    private void showInputMethodPicker() {
+        ((InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE)).showInputMethodPicker();
     }
 }

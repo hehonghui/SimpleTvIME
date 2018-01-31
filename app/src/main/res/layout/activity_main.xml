@@ -7,8 +7,10 @@
     <EditText android:id="@+id/input_edittext" android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="center"
-              android:hint="Input Text"
+              android:hint="输入点啥~"
               android:focusable="true"
+              android:layout_marginLeft="30dp"
+              android:layout_marginRight="30dp"
               android:layout_marginTop="80dp"
               android:textColor="@android:color/holo_red_light"
               android:textSize="20dp"/>
@@ -20,7 +22,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
             android:gravity="center"
-            android:text="选中输入法"
+            android:text="@string/select"
             android:textColor="@android:color/white"
     />
 
@@ -30,12 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="设置默认输入法"
+            android:text="@string/default_ime"
             android:textColor="@android:color/white"
     />
-
-
-    <include layout="@layout/activity_input" android:id="@+id/addr_layout" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 
     <!--status -->
@@ -44,6 +43,6 @@
               android:layout_gravity="bottom"
               android:layout_marginTop="48dp"
               android:gravity="center"
-              android:textColor="@android:color/holo_red_light" android:textSize="12sp"/>
+              android:textColor="@android:color/holo_red_light" android:textSize="14sp"/>
 
 </LinearLayout>

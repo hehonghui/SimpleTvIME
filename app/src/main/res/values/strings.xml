@@ -1,11 +1,16 @@
 <resources>
-    <string name="app_name">SimpleRemoteInputMethod</string>
+    <string name="app_name">Tv远程输入法</string>
 
-    <!-- Error messages -->
-    <string name="fast_input_label">Tv远程输入法</string>
-    <string name="label_subtype_generic">电视盒子远程输入法</string>
+    <string name="is_active">是否激活: </string>
+    <string name="is_default">;  默认输入法: </string>
 
     <string name="connect_addr">连接的地址为: </string>
     <string name="inputmethod_not_start">输入法未启动 !!!</string>
     <string name="waiting">服务器启动未完成, 请等待...</string>
+
+    <string name="select">选中输入法</string>
+    <string name="default_ime">设置默认输入法</string>
+
+    <string name="enable_input">点击 选中输入法 勾选 \"Tv远程输入法\"</string>
+    <string name="setup_default">点击 设置默认输入法 勾选 \"Tv远程输入法\"</string>
 </resources>

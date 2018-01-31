@@ -42,7 +42,7 @@ public class ServerInputMethodService extends InputMethodService {
     @Override
     public View onCreateInputView() {
         View inputView = getLayoutInflater().inflate(R.layout.activity_input, null) ;
-        inputView.setBackgroundColor(Color.LTGRAY);
+        inputView.setBackgroundColor(Color.GRAY);
         setupQRCode(inputView);
         return inputView;
     }
