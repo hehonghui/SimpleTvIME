@@ -3,11 +3,14 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.simple.simpleremoteinputmethod"
+        applicationId "com.simple.ime"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+
+        //todo:添加新语言需在此处设置
+        resConfigs "en", "zh"
     }
 
     signingConfigs {
@@ -20,8 +23,10 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }

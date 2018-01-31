@@ -1,4 +1,4 @@
-package com.simple.simpleremoteinputmethod.utils;
+package com.simple.ime.utils;
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;

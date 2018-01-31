@@ -1,4 +1,4 @@
-package com.simple.simpleremoteinputmethod;
+package com.simple.ime;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

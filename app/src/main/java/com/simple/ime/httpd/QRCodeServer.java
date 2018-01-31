@@ -1,10 +1,10 @@
-package com.simple.simpleremoteinputmethod.httpd;
+package com.simple.ime.httpd;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.simple.simpleremoteinputmethod.qrcode.QRCodeGenerator;
-import com.simple.simpleremoteinputmethod.utils.Utils;
+import com.simple.ime.qrcode.QRCodeGenerator;
+import com.simple.ime.utils.Utils;
 
 import java.io.IOException;
 

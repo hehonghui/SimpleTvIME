@@ -1,4 +1,4 @@
-package com.simple.simpleremoteinputmethod.httpd;
+package com.simple.ime.httpd;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

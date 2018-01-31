@@ -1,4 +1,4 @@
-package com.simple.simpleremoteinputmethod.services;
+package com.simple.ime.services;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.simple.simpleremoteinputmethod.R;
-import com.simple.simpleremoteinputmethod.httpd.QRCodeServer;
+import com.simple.ime.R;
+import com.simple.ime.httpd.QRCodeServer;
 
 import java.io.IOException;
 

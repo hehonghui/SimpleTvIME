@@ -1,4 +1,4 @@
-package com.simple.simpleremoteinputmethod.qrcode;
+package com.simple.ime.qrcode;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;

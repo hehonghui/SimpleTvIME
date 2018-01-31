@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.simple.simpleremoteinputmethod;
+package com.simple.ime;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,9 +25,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.simple.simpleremoteinputmethod.httpd.QRCodeServer;
-import com.simple.simpleremoteinputmethod.services.ServerInputMethodService;
-import com.simple.simpleremoteinputmethod.utils.Utils;
+import com.simple.ime.httpd.QRCodeServer;
+import com.simple.ime.services.ServerInputMethodService;
+import com.simple.ime.utils.Utils;
 
 /**
  *
@@ -60,21 +60,26 @@ public class MainActivity extends Activity {
         TextView textView = findViewById(R.id.im_status_tv) ;
         textView.setText( getText(R.string.is_active).toString() + Utils.myInputMethodIsActive(this)
                             + getText(R.string.is_default).toString() + Utils.myInputMethodIsDefault(this));
-
-        mUiHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if ( Utils.myInputMethodIsDefault(getApplicationContext())
-                        && !QRCodeServer.getInstance(getApplicationContext()).isStarted() ) {
-                    Intent intent = new Intent(getApplicationContext(), ServerInputMethodService.class) ;
-                    startService(intent) ;
-                }
-            }
-        }, 1000) ;
-
-        showTips();
     }
 
+    Runnable mCheckRunnable = new Runnable() {
+        @Override
+        public void run() {
+            Intent intent = new Intent(getApplicationContext(), ServerInputMethodService.class) ;
+            startService(intent) ;
+        }
+    } ;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if ( Utils.myInputMethodIsDefault(getApplicationContext())
+                && !QRCodeServer.getInstance(getApplicationContext()).isStarted() ) {
+            mUiHandler.postDelayed(mCheckRunnable, 1000) ;
+        } else {
+            showTips();
+        }
+    }
 
     private void showTips() {
         if ( !Utils.myInputMethodIsActive(getApplicationContext()) ) {
@@ -83,6 +88,7 @@ public class MainActivity extends Activity {
             Toast.makeText(this, R.string.setup_default , Toast.LENGTH_LONG).show();
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

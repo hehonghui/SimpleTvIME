@@ -1,11 +1,11 @@
-package com.simple.simpleremoteinputmethod.httpd;
+package com.simple.ime.httpd;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.simple.simpleremoteinputmethod.services.RemoteInputEvent;
-import com.simple.simpleremoteinputmethod.services.RemoteKeyEvent;
-import com.simple.simpleremoteinputmethod.utils.Utils;
+import com.simple.ime.services.RemoteInputEvent;
+import com.simple.ime.services.RemoteKeyEvent;
+import com.simple.ime.utils.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;

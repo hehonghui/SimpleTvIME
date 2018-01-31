@@ -1,4 +1,4 @@
-package com.simple.simpleremoteinputmethod.services;
+package com.simple.ime.services;
 
 /**
  * Created by mrsimple on 30/1/2018.
