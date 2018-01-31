@@ -205,7 +205,7 @@ body {
 	bottom: 0;
 	width: 58px;
 	height: 58px;
-	background: url(./keys.png) no-repeat;
+	background: url(keys.png) no-repeat;
 	background-size: 1000px
 }
 
@@ -224,7 +224,7 @@ body {
 	top: 0;
 	width: 58px;
 	height: 58px;
-	background: url(./keys.png) no-repeat;
+	background: url(keys.png) no-repeat;
 	background-size: 1000px
 }
 
@@ -243,7 +243,7 @@ body {
 	right: -65px;
 	width: 58px;
 	height: 58px;
-	background: url(./keys.png) no-repeat;
+	background: url(keys.png) no-repeat;
 	background-size: 1000px
 }
 
