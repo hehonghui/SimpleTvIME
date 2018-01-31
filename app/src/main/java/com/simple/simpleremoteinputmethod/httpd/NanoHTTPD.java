@@ -1650,7 +1650,7 @@ public abstract class NanoHTTPD {
 
     private SSLServerSocketFactory sslServerSocketFactory;
 
-    private Thread myThread;
+    protected Thread myThread;
 
     /**
      * Pluggable strategy for asynchronously executing requests.

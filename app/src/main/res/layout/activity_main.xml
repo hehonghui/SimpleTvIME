@@ -8,6 +8,7 @@
               android:layout_height="wrap_content"
               android:gravity="center"
               android:hint="Input Text"
+              android:focusable="true"
               android:layout_marginTop="80dp"
               android:textColor="@android:color/holo_red_light"
               android:textSize="20dp"/>

@@ -21,15 +21,16 @@ import de.greenrobot.event.EventBus;
  */
 
 public class ServerInputMethodService extends InputMethodService {
-
-    private static QRCodeServer sLocalServer;
+    private QRCodeServer sLocalServer ;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sLocalServer = new QRCodeServer(getApplicationContext()) ;
+        sLocalServer =  QRCodeServer.getInstance(getApplicationContext());
         try {
-            sLocalServer.start();
+            if ( !sLocalServer.isStarted() ) {
+                sLocalServer.start();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,7 +59,7 @@ public class ServerInputMethodService extends InputMethodService {
                 public void run() {
                     setupQRCode(inputView);
                 }
-            }, 500);
+            }, 50);
         }
     }
 
@@ -109,9 +110,5 @@ public class ServerInputMethodService extends InputMethodService {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addCategory("android.intent.category.HOME");
         startActivity(intent);
-    }
-
-    public static QRCodeServer getLocalServer() {
-        return sLocalServer;
     }
 }

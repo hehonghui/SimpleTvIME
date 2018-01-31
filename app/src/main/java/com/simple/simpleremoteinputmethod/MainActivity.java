@@ -27,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.simple.simpleremoteinputmethod.httpd.QRCodeServer;
-import com.simple.simpleremoteinputmethod.services.ServerInputMethodService;
 import com.simple.simpleremoteinputmethod.utils.Utils;
 
 /*
@@ -65,12 +64,9 @@ public class MainActivity extends Activity {
             return;
         }
         TextView addrTv = findViewById(R.id.addr_tv) ;
-        final QRCodeServer localServer = ServerInputMethodService.getLocalServer() ;
-        if ( localServer != null && localServer.getQrCodeBitmap() != null ) {
-            // mServerAddr = "http://www.newsdog.today";
-
+        final QRCodeServer localServer = QRCodeServer.getInstance(getApplicationContext()) ;
+        if ( localServer.getQrCodeBitmap() != null ) {
             mServerAddr = localServer.getLocalAddress();
-
             addrTv.setText("连接的地址为: " + mServerAddr);
 
             ImageView imageView = findViewById(R.id.qrcode_imageview) ;
@@ -82,13 +78,14 @@ public class MainActivity extends Activity {
                 public void run() {
                     initHttpServer();
                 }
-            }, 1000);
+            }, 200);
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        findViewById(R.id.input_edittext).performClick() ;
         initHttpServer();
     }
 }

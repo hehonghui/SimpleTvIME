@@ -15,7 +15,20 @@ import java.io.IOException;
 public class QRCodeServer extends RouterServer {
     private volatile Bitmap mQrCodeBitmap;
 
-    public QRCodeServer(Context context) {
+    private static QRCodeServer sInstance = null;
+
+    public static QRCodeServer getInstance(Context context) {
+        if (sInstance == null) {
+            synchronized (QRCodeServer.class) {
+                if (sInstance == null) {
+                    sInstance = new QRCodeServer(context.getApplicationContext());
+                }
+            }
+        }
+        return sInstance;
+    }
+
+    private QRCodeServer(Context context) {
         super(context);
     }
 
@@ -29,6 +42,10 @@ public class QRCodeServer extends RouterServer {
                 mQrCodeBitmap = QRCodeGenerator.generate(getLocalAddress(),  size , size) ;
             }
         }.start();
+    }
+
+    public boolean isStarted() {
+        return myThread != null ;
     }
 
     public Bitmap getQrCodeBitmap() {
