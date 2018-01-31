@@ -35,22 +35,7 @@
     />
 
 
-    <!--ip address-->
-    <TextView android:id="@+id/addr_tv" android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="20dp"
-              android:layout_marginBottom="8dp"
-              android:gravity="center"
-              android:textColor="@android:color/holo_red_light"
-              android:textSize="14sp"/>
-
-
-    <!--qr code-->
-    <ImageView android:id="@+id/qrcode_imageview" android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:minWidth="100dp"
-               android:minHeight="100dp"
-               android:layout_gravity="center_horizontal"/>
+    <include layout="@layout/activity_input" android:id="@+id/addr_layout" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 
     <!--status -->

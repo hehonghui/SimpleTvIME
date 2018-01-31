@@ -6,9 +6,6 @@ package com.simple.simpleremoteinputmethod.services;
 
 public class RemoteKeyEvent {
     public static final int HOME_CODE = 3 ;
-    public static final int BACK_CODE = 4 ;
-
-    public static final int DELETE_CODE = 67 ;
     public static final int CLEAR_CODE = 68 ;
 
     public int keyCode;

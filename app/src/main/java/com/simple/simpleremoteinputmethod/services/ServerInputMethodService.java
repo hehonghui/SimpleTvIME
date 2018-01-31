@@ -1,6 +1,7 @@
 package com.simple.simpleremoteinputmethod.services;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.inputmethodservice.InputMethodService;
 import android.os.Handler;
 import android.os.Looper;
@@ -41,19 +42,20 @@ public class ServerInputMethodService extends InputMethodService {
     @Override
     public View onCreateInputView() {
         View inputView = getLayoutInflater().inflate(R.layout.activity_input, null) ;
+        inputView.setBackgroundColor(Color.LTGRAY);
         setupQRCode(inputView);
         return inputView;
     }
 
     private void setupQRCode(final View inputView) {
-        TextView addrTv = inputView.findViewById(R.id.input_tv) ;
+        TextView addrTv = inputView.findViewById(R.id.addr_tv) ;
         if ( sLocalServer != null && sLocalServer.getQrCodeBitmap() != null ) {
-            addrTv.setText("连接的地址为: " + sLocalServer.getLocalAddress());
+            addrTv.setText(getText(R.string.connect_addr) + sLocalServer.getLocalAddress());
 
             ImageView imageView = inputView.findViewById(R.id.qrcode_imageview);
             imageView.setImageBitmap(sLocalServer.getQrCodeBitmap());
         } else {
-            addrTv.setText("服务器启动未完成, 请等待...");
+            addrTv.setText(getText(R.string.waiting));
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -91,17 +93,18 @@ public class ServerInputMethodService extends InputMethodService {
     }
 
 
+    public void onEventMainThread(RemoteInputEvent event) {
+        Log.e("", "@@@ " + event) ;
+        clearText();
+        getCurrentInputConnection().commitText(event.text, 1) ;
+    }
+
+
     private void clearText() {
         if (getCurrentInputConnection() != null) {
             getCurrentInputConnection().performContextMenuAction(android.R.id.selectAll);
             getCurrentInputConnection().commitText("", 1);
         }
-    }
-
-    public void onEventMainThread(RemoteInputEvent event) {
-        Log.e("", "@@@ " + event) ;
-        clearText();
-        getCurrentInputConnection().commitText(event.text, 1) ;
     }
 
 

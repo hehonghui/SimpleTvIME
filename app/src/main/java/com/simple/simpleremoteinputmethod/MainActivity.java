@@ -67,12 +67,12 @@ public class MainActivity extends Activity {
         final QRCodeServer localServer = QRCodeServer.getInstance(getApplicationContext()) ;
         if ( localServer.getQrCodeBitmap() != null ) {
             mServerAddr = localServer.getLocalAddress();
-            addrTv.setText("连接的地址为: " + mServerAddr);
+            addrTv.setText(getText(R.string.connect_addr) + mServerAddr);
 
             ImageView imageView = findViewById(R.id.qrcode_imageview) ;
             imageView.setImageBitmap(localServer.getQrCodeBitmap());
         } else {
-            addrTv.setText("输入法未启动 !!!");
+            addrTv.setText(getText(R.string.inputmethod_not_start));
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
