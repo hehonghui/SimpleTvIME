@@ -81,3 +81,14 @@ function() {
         console.log(data)
     })
 })
+
+
+$(function(){
+    $('.header-tab li').click(function() { 
+         $('.header-tab li').removeClass("active");
+         $(this).addClass("active");
+         var pannel = $(this).data('tab');
+         $('.panels > div').removeClass('active')
+         $('#'+ pannel).addClass('active');
+     });
+ });

@@ -1,3 +1,71 @@
+
+.tabs {
+	width: 100%;
+	height: 100%;
+}
+.tabs ul {
+	height: 30px;
+	margin: 0;
+	padding: 0;
+}
+
+.tabs ul li {
+	width: 50%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #dcdcdc;
+	color: #333;
+	list-style: none;
+	float: left;
+	cursor: pointer;
+	border-radius: 5px 5px 0 0;
+}
+
+.tabs ul li.active{
+	background: -webkit-linear-gradient(#666, #555);
+	color: #eee;
+}
+
+.tab_input {
+	opacity: 0;
+}
+
+label {
+	cursor: pointer;
+	background: -webkit-linear-gradient(#666, #555);
+	color: #eee;
+	border-radius: 5px 5px 0 0;
+	padding: 1.5% 3%;
+	float: left;
+	width: 40%;
+	margin-right: 2px;
+	font: italic 1em cambria;
+}
+
+label:hover {
+	background: -webkit-linear-gradient(#777, #666);
+}
+
+input:checked + label {
+	background: #fff;
+	color: #333;
+}
+
+
+.panel{
+	display: none;
+	background: #f0f0f0;
+	height: -webkit-fill-available;
+	padding: 160px 0px 0px 0px;
+}
+
+.panel.active {
+	display: block;
+}
+
+/*remote controls css */
+
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -12,7 +80,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #efeff4;
+	background-color: #f0f0f0;
 	font-family: "Microsoft YaHei",Arial,sans-serif
 }
 
@@ -32,23 +100,26 @@ body {
 
 .inputarea-wrapper {
 	position: relative;
-	width: 75%;
+	width: 90%;
 	margin: 0 15px;
 	background-color: #fff;
-	border: 1px solid #d1d6db
+	border: 1px solid #d1d6db;
+	border-radius: 5px;
 }
 
 #inputarea {
 	outline: 0;
 	color: #333;
 	display: block;
-	width: 95%;
+	width: 90%;
 	margin: 3px auto;
 	border: none;
 	font-size: 18px;
 	font-family: "Microsoft YaHei",Arial,sans-serif;
-	resize: none
-	height: 55px
+	border-radius: 5px;
+	padding-top: 15px;
+	resize: none;
+	height: 100px
 }
 
 .btn-nowd {
@@ -73,7 +144,8 @@ body {
 	background-color: #d0d7da;
 	color: #1e5791;
 	border: 1px solid #ccc;
-	margin-right: 10px;
+	font-size: 13px;
+	border-radius: 2px;
 }
 
 .btn:active {
@@ -81,23 +153,36 @@ body {
 	background-color: #EC9900
 }
 
-.version {
+/*input buttons */
+#confirm {
+	width: 50%;
 	height: 30px;
-	line-height: 30px;
-	font-size: 12px;
-	color: #800040;
-	padding-left: 20px;
-	text-align: right;
-	flex: 1
+	border-radius: 2px;
+	border: 0px;
+	color: #fff;
+	font-size: large;
+	background-color: #ffa300;
+	margin-right: 20px;
 }
 
-.version a {
-	color: #800040
+#btnDel {
+	width: 25%;
+	height: 30px;
+	border-radius: 2px;
+	border: 0px;
+	background-color: #d0d7da;
+	margin-right: 20px;
 }
 
-.version-code {
-	color: #ff8000
+#btnCls {
+	width: 25%;
+	height: 30px;
+	border-radius: 2px;
+	border: 0px;
+	background-color: #d0d7da;
+	margin-right: 8px;
 }
+
 
 .btn-wd {
 	color: #fff;
@@ -109,19 +194,16 @@ body {
 }
 
 .btn-line {
-	margin-top: 10px;
+	margin-top: 20px;
 	margin-left: 15px;
-	margin-right: 15px;
+	margin-right: 12px;
+	margin-bottom: 15px;
 	border-radius: 5px;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start
 }
 
-.keys {
-	margin-top: 20px;
-	margin-bottom: 20px
-}
 
 .direction {
 	position: absolute;
@@ -255,119 +337,4 @@ body {
 .vol2-btn {
 	top: 112px;
 	background-position: -648px -379px
-}
-
-.app-list {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin-top: 10px;
-	border-top: 1px solid #ccc;
-	padding: 15px
-}
-
-.app-item {
-	width: 100px;
-	font-size: 12px;
-	border: 1px solid #ccc;
-	padding: 5px;
-	background: #fff;
-	margin-bottom: 10px
-}
-
-.item-empty {
-	height: 0;
-	border: none;
-	padding: 0
-}
-
-.app-icon {
-	width: 84px;
-	height: 84px
-}
-
-.app-name {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	width: 92px;
-	text-align: center
-}
-
-.blue {
-	color: #00f
-}
-
-.app-btn {
-	margin-top: 5px;
-	text-align: center
-}
-
-.app-un {
-	line-height: 28px;
-	text-align: right;
-	padding-right: 10px;
-	font-size: 12px;
-	color: red
-}
-
-.hide {
-	display: none
-}
-
-.app-upload {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin-top: 10px;
-	border-top: 1px solid #ccc;
-	padding: 15px;
-	position: relative
-}
-
-#upfile {
-	width: 80px;
-	height: 35px;
-	position: absolute;
-	left: 15px;
-	top: 15px;
-	opacity: 0;
-	filter: alpha(opacity=0)
-}
-
-.upload-btn {
-	height: 35px;
-	background-color: #d0d7da;
-	color: #1e5791;
-	border: 1px solid #ccc;
-	width: 80px
-}
-
-.upload-process {
-	flex: 1;
-	height: 35px;
-	padding: 0 10px;
-	display: flex;
-	flex-direction: row;
-	align-items: center
-}
-
-.processbar {
-	background-color: #EC9900;
-	height: 20px;
-	width: 0;
-	text-align: center;
-	color: #fff;
-	font-size: 12px;
-	line-height: 20px
-}
-
-.showSettings {
-	border: 1px solid #ccc;
-	padding: 2px 5px;
-	background-color: #d0d7da;
-	color: #1e5791;
-	text-decoration: none;
 }
